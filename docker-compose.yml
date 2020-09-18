@@ -26,5 +26,20 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
       - TZ=Asia/Tokyo
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+    links:
+      - db
+    ports:
+      - 8083:80
+    volumes:
+      - "./phpmyadmin/sessions:/sessions"
+
+
 volumes:
   db-store:
