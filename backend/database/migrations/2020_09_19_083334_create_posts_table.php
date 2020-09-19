@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
-            $table->unsignedBigInteger('brand_id')->comment('ブランドID');
+            $table->unsignedBigInteger('brand_id')->nullable()->comment('ブランドID');
             $table->string('text')->comment('本文');
             $table->timestamps();
 
