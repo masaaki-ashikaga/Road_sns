@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    public function redirectPath()
+    {
+        return 'posts';
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
