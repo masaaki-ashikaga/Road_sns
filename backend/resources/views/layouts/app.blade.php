@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -29,7 +32,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -49,9 +51,17 @@
                                 </li>
                             @endif
                         @else
+                            <li><a href="#" class="mr-4 text-dark nav-link"><i class="fas fa-home fa-2x"></i></a></li>
+                            <li><a href="#" class="mr-4 text-dark nav-link"><i class="far fa-plus-square fa-2x"></i></a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{-- {{ Auth::user()->name }} --}}
+                                    @if(Auth::user()->profile_image != null)
+                                    <img src="image/{{ Auth::user()->profile_image }}" style="height: 22px; width: 22px; border-radius: 50%;">
+                                    @else
+                                    <img src="image/test_user.jpg" style="height: 22px; width: 22px; border-radius: 50%;">
+                                    @endif
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
