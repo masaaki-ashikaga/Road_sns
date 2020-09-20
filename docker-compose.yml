@@ -40,6 +40,12 @@ services:
     volumes:
       - "./phpmyadmin/sessions:/sessions"
 
+  node:
+    image: node:12.14-alpine
+    tty: true
+    volumes:
+      - ./backend:/work
+    working_dir: /work
 
 volumes:
   db-store:
