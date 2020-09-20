@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('posts', 'PostsController');
+Route::resource('users', 'UsersController');
+
+Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
