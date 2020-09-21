@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
             $table->unsignedBigInteger('brand_id')->nullable()->comment('ブランドID');
             $table->string('text')->comment('本文');
+            $table->string('post_image');
             $table->timestamps();
 
             $table->foreign('user_id')

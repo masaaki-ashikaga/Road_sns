@@ -26,7 +26,7 @@
                                     <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                                        <button type="submit" class="btn btn-outline-dark">フォロー解除</button>
                                     </form>
                                 @else
                                     <form action="{{ route('follow', ['user' => $user->id]) }}" method="POST">

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Follower;
 
 class UsersController extends Controller
 {
@@ -47,9 +49,15 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user, Post $post, Follower $follower)
     {
-        //
+        $following = auth()->user()->isFollowing($user->id);
+        $followed = auth()->user()->isFollowed($user->id);
+        $posts = $post->where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
+        $post_count = count($post->where('user_id', $user->id)->get());
+        $following_count = count($follower->where('following_id', $user->id)->get());
+        $followed_count = count($follower->where('followed_id', $user->id)->get());
+        return view('users.show', compact('user', 'following', 'followed', 'posts', 'post_count', 'following_count', 'followed_count'));
     }
 
     /**

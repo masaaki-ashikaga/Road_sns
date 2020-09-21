@@ -51,6 +51,7 @@
                                 </li>
                             @endif
                         @else
+                            <li><a href="{{ route('users.index') }}" class="mr-4 text-dark nav-link"><i class="fas fa-users fa-2x"></i></a></li>
                             <li><a href="#" class="mr-4 text-dark nav-link"><i class="fas fa-home fa-2x"></i></a></li>
                             <li><a href="#" class="mr-4 text-dark nav-link"><i class="far fa-plus-square fa-2x"></i></a></li>
                             <li class="nav-item dropdown">

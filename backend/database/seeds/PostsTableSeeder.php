@@ -18,6 +18,7 @@ class PostsTableSeeder extends Seeder
                 'user_id' => $i,
                 'brand_id' => $i,
                 'text' => 'テスト投稿' . $i,
+                'post_image' => 'test_post.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

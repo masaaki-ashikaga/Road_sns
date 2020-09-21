@@ -43,11 +43,13 @@ class User extends Authenticatable
 
     public function followers()
     {
+        //followed_idが自分のデータのうちの、following_idを取得する。
         return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
     }
 
     public function follows()
     {
+        //following_idが自分のデータのうちの、followed_idを取得する。
         return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
     }
 
@@ -63,11 +65,13 @@ class User extends Authenticatable
 
     public function isFollowing($user_id)
     {
+        //自分がフォローしているユーザーを取得→その中に指定のユーザーIDがあるか判定
         return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
     }
 
     public function isFollowed($user_id)
     {
+        //自分をフォローしているユーザーを取得→その中に指定のユーザーIDがあるか判定
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
 }
