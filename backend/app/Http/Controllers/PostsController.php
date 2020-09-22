@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Brand;
 use App\Models\Comment;
+use App\Models\Favorite;
 
 class PostsController extends Controller
 {
@@ -26,7 +28,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $brands = Brand::all();
+        return view('posts.create', compact('brands'));
     }
 
     /**
@@ -35,9 +38,10 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $post->createPost($request);
+        return redirect('/posts');
     }
 
     /**
@@ -46,11 +50,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, Comment $comment)
+    public function show(Post $post, Comment $comment, Favorite $favorite)
     {
         $user = User::find($post->user_id);
         $comments = $comment->with('user')->where('post_id', $post->id)->get();
-        return view('posts.show', compact('post', 'user', 'comments'));
+        $comment_count = count($comments);
+        $favorite_count = count($favorite->where('post_id', $post->id)->get());
+        return view('posts.show', compact('post', 'user', 'comments', 'comment_count', 'favorite_count'));
     }
 
     /**

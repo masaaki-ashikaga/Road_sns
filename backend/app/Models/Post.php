@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Post extends Model
 {
@@ -28,5 +30,16 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function createPost($request)
+    {
+        $user_id = Auth::id();
+        $this->user_id = $user_id;
+        $this->brand_id = $request->brand_id;
+        $this->text = $request->text;
+        $this->post_image = $request->post_image;
+        $this->save();
+        return;
     }
 }

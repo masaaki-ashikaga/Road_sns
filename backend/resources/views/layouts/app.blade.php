@@ -52,8 +52,8 @@
                             @endif
                         @else
                             <li><a href="{{ route('users.index') }}" class="mr-4 text-dark nav-link"><i class="fas fa-users fa-2x"></i></a></li>
-                            <li><a href="#" class="mr-4 text-dark nav-link"><i class="fas fa-home fa-2x"></i></a></li>
-                            <li><a href="#" class="mr-4 text-dark nav-link"><i class="far fa-plus-square fa-2x"></i></a></li>
+                            <li><a href="{{ route('posts.index') }}" class="mr-4 text-dark nav-link"><i class="fas fa-home fa-2x"></i></a></li>
+                            <li><a href="{{ route('posts.create') }}" class="mr-4 text-dark nav-link"><i class="far fa-plus-square fa-2x"></i></a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{-- {{ Auth::user()->name }} --}}
