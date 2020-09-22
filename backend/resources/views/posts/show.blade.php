@@ -22,8 +22,25 @@
                             <p class="card-text pt-3">{{ $post->text }}</p>
                             </div>
                             <div class="text-left pt-4">
-                                <a href="#" class="text-dark mr-3"><i class="far fa-heart fa-2x"></i></a>
-                                <a href="#" class="text-dark"><i class="far fa-comment fa-2x"></i></a>
+                                <div class="d-flex">
+                                    @if(Auth::id() === $user->id)
+                                    <div class="dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-dark mr-4">
+                                            <i class="fas fa-ellipsis-v fa-2x"></i>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <form method="POST" action="" class="mb-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="dropdown-item">編集</a>
+                                                <button type="submit" class="dropdown-item del-btn">削除</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <a href="#" class="text-dark mr-4"><i class="far fa-heart fa-2x"></i></a>
+                                    <a href="#" class="text-dark"><i class="far fa-comment fa-2x"></i></a>
+                                </div>
                                 <p class="pt-3">{{ $favorite_count }} 人が「いいね！」しました。</p>
                                 <p>{{ $comment_count }} 件のコメントがあります。</p>
                                 <p class="card-text"><small class="text-muted">{{ $post->created_at }}</small></p>

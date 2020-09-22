@@ -67,7 +67,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $brands = Brand::all();
+        return view('posts.edit', compact('post', 'brands'));
     }
 
     /**
@@ -77,9 +79,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $post->updatePost($request, $post);
+        return redirect('/posts');
     }
 
     /**

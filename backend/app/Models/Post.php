@@ -42,4 +42,14 @@ class Post extends Model
         $this->save();
         return;
     }
+
+    public function updatePost($request, $post)
+    {
+        $new_post = $this::find($post->id);
+        $new_post->brand_id = $request->brand_id;
+        $new_post->text = $request->text;
+        $new_post->post_image = $request->post_image;
+        $new_post->update();
+        return;
+    }
 }
