@@ -74,4 +74,9 @@ class User extends Authenticatable
         //自分をフォローしているユーザーを取得→その中に指定のユーザーIDがあるか判定
         return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
