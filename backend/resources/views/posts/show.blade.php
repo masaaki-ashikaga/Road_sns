@@ -24,8 +24,8 @@
                             <div class="text-left pt-4">
                                 <a href="#" class="text-dark mr-3"><i class="far fa-heart fa-2x"></i></a>
                                 <a href="#" class="text-dark"><i class="far fa-comment fa-2x"></i></a>
-                                <p class="pt-3">●●人が「いいね！」しました。</p>
-                                <p>●●件のコメントがあります。</p>
+                                <p class="pt-3">{{ $favorite_count }} 人が「いいね！」しました。</p>
+                                <p>{{ $comment_count }} 件のコメントがあります。</p>
                                 <p class="card-text"><small class="text-muted">{{ $post->created_at }}</small></p>
                             </div>
                         </div>
