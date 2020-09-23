@@ -54,12 +54,15 @@
                     コメントを追加
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                           <label for="comment">コメント</label>
-                          <input type="text" class="form-control" id="comment">
+                          <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                          <input type="hidden" name="post_id" value="{{ $post->id }}">
+                          <input type="text" class="form-control" id="comment" name="comment">
                         </div>
-                        <button type="submit" class="btn btn-primary">投稿する</button>
+                        <input type="submit" value="投稿する" class="btn btn-primary">
                     </form>
                 </div>
             </div>
@@ -70,13 +73,19 @@
                         <img src="/image/{{ $comment->user->profile_image }}" width="50" height="50">
                         <div class="mr-3 ml-3 d-flex flex-column">
                             <h5 class="mb-0 font-weight-bold">{{ $comment->user->name }}</h5>
-                            <p class="text-secondary">{{ $comment->user->account_name }}</p>
+                            <a href="{{ route('users.show', ['user' => $comment->user->id]) }}" class="text-secondary">{{ $comment->user->account_name }}</a>
                             <p>{{ $comment->comment }}</p>
                         </div>
                     </div>
                     @if(Auth::id() === $comment->user_id)
-                        <a href="#" class="mr-3">編集</a>
-                        <a href="#">削除</a>
+                    <div class="d-flex">
+                        <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}" class="mr-3 btn btn-outline-secondary">編集</a>
+                        <form action="{{ route('comments.destroy', ['comment' => $comment->id]) }}" method="POST" onSubmit="return deletecheck()">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-outline-secondary" value="削除">
+                        </form>
+                    </div>
                     @endif
                 </div>
             </div>
@@ -84,4 +93,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    function deletecheck()
+    {
+        'use strict';
+        if(window.confirm('コメントを削除しますか？')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+</script>
+
 @endsection
