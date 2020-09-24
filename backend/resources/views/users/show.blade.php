@@ -42,6 +42,13 @@
                         </div>
                     </div>
                 </div>
+                @if($post_count === 0)
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h4 class="mb-0">投稿はまだありません。</h4>
+                    </div>
+                </div>
+                @endif
                 <div class="pt-3 d-flex flex-wrap text-center">
                     @foreach($posts as $post)
                     <div class="col-md-4 pt-5">

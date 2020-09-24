@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 text-center" style="background: #ccc;">
+        <div class="col-sm-9 text-center">
+            @if($posts != null)
             @foreach($posts as $post)
-            <?php //dd(array_column($post->favorite()->get()->toArray(), 'user_id')); ?>
             <div class="card mb-5">
                 <div class="card-header">
                     <div class="d-flex">
@@ -43,6 +43,13 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">フォロワーの投稿がありません。</h4>
+                </div>
+            </div>
+            @endif
         </div>
         <div class="col-sm-3">col-sm-3</div>
     </div>
