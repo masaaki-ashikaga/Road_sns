@@ -38,8 +38,21 @@
                                         </div>
                                     </div>
                                     @endif
-                                    <a href="#" class="text-dark mr-4"><i class="far fa-heart fa-2x"></i></a>
-                                    <a href="#" class="text-dark"><i class="far fa-comment fa-2x"></i></a>
+                                    <?php //dd(array_column($post->favorite->toArray(), 'user_id')) ?>
+                                    @if(!in_array(Auth::user()->id, array_column($post->favorite()->get()->toArray(), 'user_id'), TRUE))
+                                    <form action="{{ route('favorites.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <button type="submit" class="btn p-0 border-0 text-dark"><i class="far fa-heart fa-2x"></i></button>
+                                    </form>
+                                    @else
+                                    <form action="{{ route('favorites.destroy', ['favorite' => array_column($post->favorite()->get()->toArray(), 'id', 'user_id')[Auth::user()->id]]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn p-0 border-0 text-danger"><i class="far fa-heart fa-2x"></i></button>
+                                    </form>
+                                    @endif
+                                    <a href="#" class="text-dark ml-4"><i class="far fa-comment fa-2x"></i></a>
                                 </div>
                                 <p class="pt-3">{{ $favorite_count }} 人が「いいね！」しました。</p>
                                 <p>{{ $comment_count }} 件のコメントがあります。</p>
@@ -50,7 +63,7 @@
                 </div>
             </div>
             <div class="card mt-4 mb-4">
-                <div class="card-header">
+                <div class="card-header" id="#">
                     コメントを追加
                 </div>
                 <div class="card-body">
@@ -70,7 +83,7 @@
             <div class="card">
                 <div class="card-haeder p-3 w-100">
                     <div class="d-flex">
-                        <img src="/image/{{ $comment->user->profile_image }}" width="50" height="50">
+                        <img src="/image/{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
                         <div class="mr-3 ml-3 d-flex flex-column">
                             <h5 class="mb-0 font-weight-bold">{{ $comment->user->name }}</h5>
                             <a href="{{ route('users.show', ['user' => $comment->user->id]) }}" class="text-secondary">{{ $comment->user->account_name }}</a>
