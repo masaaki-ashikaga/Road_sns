@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Brand;
 use App\Models\Comment;
 use App\Models\Favorite;
+use App\Models\Follower;
 
 class PostsController extends Controller
 {
@@ -16,9 +18,11 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        return view('posts.index');
+        $followed_users_id = Follower::where('following_id', Auth::id())->get('followed_id');
+        $posts = $post->getPost($followed_users_id);
+        return view('posts.index', compact('posts'));
     }
 
     /**

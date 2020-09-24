@@ -22,12 +22,12 @@ class Post extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function favorites()
+    public function favorite()
     {
         return $this->hasMany(Favorite::class);
     }
 
-    public function comments()
+    public function comment()
     {
         return $this->hasMany(Comment::class);
     }
@@ -51,5 +51,13 @@ class Post extends Model
         $new_post->post_image = $request->post_image;
         $new_post->update();
         return;
+    }
+
+    public function getPost($followed_users_id)
+    {
+        foreach($followed_users_id as $followed_user_id){
+            $posts[] = Post::with('user')->where('user_id', $followed_user_id->followed_id)->orderBy('created_at', 'DESC')->first();
+        }
+        return $posts;
     }
 }
