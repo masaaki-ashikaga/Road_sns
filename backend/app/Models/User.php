@@ -84,4 +84,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function updateUser($request)
+    {
+        $new_user = User::find($request->id);
+        $new_user->account_name = $request->account_name;
+        $new_user->name = $request->name;
+        $new_user->text = $request->text;
+        $new_user->profile_image = $request->profile_image;
+        $new_user->update();
+        return;
+    }
 }

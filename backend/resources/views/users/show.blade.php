@@ -16,7 +16,7 @@
                                     </div>
                                     <div class="p-3 d-flex flex-column justify-content-between">
                                         @if(Auth::id() === $user->id)
-                                            <a href="#" class="btn btn-primary">プロフィールを編集</a>
+                                            <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}" class="btn btn-primary">プロフィールを編集</a>
                                             @else
                                             @if(!$following)
                                                 <form action="{{ route('follow', ['user' => $user->id]) }}" method="POST">
@@ -38,6 +38,9 @@
                                     <p class="font-weight-bold mr-4"><a href="{{ route('followed', ['user' => $user->id]) }}" class="text-dark">フォロワー {{ $followed_count }} 人</a></p>
                                     <p class="font-weight-bold"><a href="{{ route('following', ['user' => $user->id]) }}" class="text-dark">フォロー中 {{ $following_count }} 人</a></p>
                                 </div>
+                                @if($user->text)
+                                <p>{{ $user->text }}</p>
+                                @endif
                             </div>
                         </div>
                     </div>
