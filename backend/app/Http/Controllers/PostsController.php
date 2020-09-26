@@ -50,7 +50,8 @@ class PostsController extends Controller
     public function store(Request $request, Post $post)
     {
         $post->createPost($request);
-        return redirect('/posts');
+        $user_id = Auth::user()->id;
+        return redirect(route('users.show', ['user' => $user_id]));
     }
 
     /**
@@ -102,6 +103,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::find($id)->delete();
+        $user_id = Auth::user()->id;
+        return redirect(route('users.show', ['user' => $user_id]));
     }
 }

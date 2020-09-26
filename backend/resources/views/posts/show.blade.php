@@ -29,7 +29,7 @@
                                             <i class="fas fa-ellipsis-v fa-2x"></i>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <form method="POST" action="" class="mb-0">
+                                            <form method="POST" action="{{ route('posts.destroy', ['post' => $post->id]) }}" class="mb-0" onSubmit="return postDelete()">
                                                 @csrf
                                                 @method('DELETE')
                                                 <a href="{{ route('posts.edit', ['post' => $post->id]) }}" class="dropdown-item">編集</a>
@@ -93,7 +93,7 @@
                     @if(Auth::id() === $comment->user_id)
                     <div class="d-flex">
                         <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}" class="mr-3 btn btn-outline-secondary">編集</a>
-                        <form action="{{ route('comments.destroy', ['comment' => $comment->id]) }}" method="POST" onSubmit="return deletecheck()">
+                        <form action="{{ route('comments.destroy', ['comment' => $comment->id]) }}" method="POST" onSubmit="return commentDelete()">
                             @csrf
                             @method('DELETE')
                             <input type="submit" class="btn btn-outline-secondary" value="削除">
@@ -108,10 +108,20 @@
 </div>
 
 <script>
-    function deletecheck()
+    function commentDelete()
     {
         'use strict';
         if(window.confirm('コメントを削除しますか？')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    function postDelete()
+    {
+        'use strict';
+        if(window.confirm('投稿を削除しますか？')){
             return true;
         } else{
             return false;
