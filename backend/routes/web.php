@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('posts', 'PostsController');
+Route::get('users/{user}/followed', 'UsersController@followed')->name('followed');
+Route::get('users/{user}/following', 'UsersController@following')->name('following');
 Route::resource('users', 'UsersController');
 Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
 Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);

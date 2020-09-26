@@ -35,8 +35,8 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="font-weight-bold mr-4">投稿 {{ $post_count }} 件</p>
-                                    <p class="font-weight-bold mr-4">フォロワー {{ $following_count }} 人</p>
-                                    <p class="font-weight-bold">フォロー中 {{ $followed_count }} 人</p>
+                                    <p class="font-weight-bold mr-4"><a href="{{ route('followed', ['user' => $user->id]) }}" class="text-dark">フォロワー {{ $followed_count }} 人</a></p>
+                                    <p class="font-weight-bold"><a href="{{ route('following', ['user' => $user->id]) }}" class="text-dark">フォロー中 {{ $following_count }} 人</a></p>
                                 </div>
                             </div>
                         </div>

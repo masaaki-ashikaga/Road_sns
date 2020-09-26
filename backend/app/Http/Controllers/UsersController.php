@@ -113,4 +113,16 @@ class UsersController extends Controller
             return back();
         }
     }
+
+    public function followed(User $user)
+    {
+        $followed = $user->followers()->where('id', '<>', Auth::id())->paginate(5);
+        return view('users.followed', compact('followed'));
+    }
+
+    public function following(User $user)
+    {
+        $follows = $user->follows()->where('id', '<>', Auth::id())->paginate(5);
+        return view('users.following', compact('follows'));
+    }
 }

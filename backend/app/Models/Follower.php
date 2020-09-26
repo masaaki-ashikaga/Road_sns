@@ -18,4 +18,9 @@ class Follower extends Model
 
     public $timestamps = false;
     public $incrementing = false;
+
+    public function user()
+    {
+        return $this->belongsToMany(self::class, 'users', '');
+    }
 }
