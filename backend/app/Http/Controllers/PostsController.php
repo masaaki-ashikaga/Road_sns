@@ -27,7 +27,8 @@ class PostsController extends Controller
         } else{
             $posts = null;
         }
-        return view('posts.index', compact('posts'));
+        $brands = Brand::orderBy('created_at', 'DESC')->take(5)->get();
+        return view('posts.index', compact('posts', 'brands'));
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 text-center">
+        <div class="col-sm-8 text-center">
             @if($posts != null)
             @foreach($posts as $post)
             <div class="card mb-5">
@@ -51,7 +51,25 @@
             </div>
             @endif
         </div>
-        <div class="col-sm-3">col-sm-3</div>
+        <div class="col-sm-4 pt-5">
+            <div class="d-flex justify-content-between">
+                <h4 class="text-secondary font-weight-bold">ブランド一覧</h4>
+                <a href="{{ route('brands.index') }}" class="pr-2">すべて見る</a>
+            </div>
+            @foreach($brands as $brand)
+            <div class="card">
+                <a href="{{ route('brands.show', ['brand' => $brand->id]) }}" class="text-dark">
+                    <div class="card-header p-3 d-flex">
+                        <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="50" height="50">
+                        <div class="ml-3 d-flex flex-column">
+                            <h5 class="mb-1 font-weight-bold">{{ $brand->name }}</h5>
+                            <p class="mb-0">{{ $brand->text }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection

@@ -21,6 +21,7 @@ Route::get('users/{user}/following', 'UsersController@following')->name('followi
 Route::resource('users', 'UsersController');
 Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
 Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+Route::resource('brands', 'BrandsController');
 
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
