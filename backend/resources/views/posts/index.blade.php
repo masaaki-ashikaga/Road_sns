@@ -6,6 +6,8 @@
         <div class="col-sm-8 text-center">
             @if($posts != null)
             @foreach($posts as $post)
+            @if(auth()->user()->isFollowing($post->user->id))
+            <?php //dd(auth()->user()->isFollowing($post->user->id)) ?>
             <div class="card mb-5">
                 <div class="card-header">
                     <div class="d-flex">
@@ -38,10 +40,12 @@
                         <p class="mb-0 pt-2">{{ count($post->favorite()->get()) }} 人が「いいね！」しました。</p>
                         <p class="pt-0">{{ count($post->comment()->get()) }} 件のコメントがあります。</p>
                         <p>{{ $post->text }}</p>
+                        <p class="card-text"><small class="text-muted">{{ $post->created_at }}</small></p>
                     </div>
                     <p></p>
                 </div>
             </div>
+            @endif
             @endforeach
             @else
             <div class="card">

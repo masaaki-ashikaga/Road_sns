@@ -20,13 +20,7 @@ class PostsController extends Controller
      */
     public function index(Post $post)
     {
-        $followed_users_id = Follower::where('following_id', Auth::id())->get('followed_id');
-        // dd($followed_users_id);
-        if(!$followed_users_id->isEmpty()){
-            $posts = $post->getPost($followed_users_id);
-        } else{
-            $posts = null;
-        }
+        $posts = Post::with('user')->orderBy('created_at', 'DESC')->get();
         $brands = Brand::orderBy('created_at', 'DESC')->take(5)->get();
         return view('posts.index', compact('posts', 'brands'));
     }

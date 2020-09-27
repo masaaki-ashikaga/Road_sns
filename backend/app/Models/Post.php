@@ -52,12 +52,4 @@ class Post extends Model
         $new_post->update();
         return;
     }
-
-    public function getPost($followed_users_id)
-    {
-        foreach($followed_users_id as $followed_user_id){
-            $posts[] = Post::with('user')->where('user_id', $followed_user_id->followed_id)->orderBy('created_at', 'DESC')->first();
-        }
-        return $posts;
-    }
 }
