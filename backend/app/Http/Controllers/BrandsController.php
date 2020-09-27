@@ -26,7 +26,7 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
     }
 
     /**
@@ -35,9 +35,10 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Brand $brand)
     {
-        //
+        $brand->createBrand($request);
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -62,7 +63,8 @@ class BrandsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $brand = Brand::find($id);
+        return view('brands.edit', compact('brand'));
     }
 
     /**
@@ -72,9 +74,10 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Brand $brand)
     {
-        //
+        $brand->updateBrand($request, $brand);
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -85,6 +88,7 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Brand::find($id)->delete();
+        return redirect(route('posts.index'));
     }
 }
