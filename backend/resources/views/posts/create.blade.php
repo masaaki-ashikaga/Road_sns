@@ -12,8 +12,11 @@
                     <form action="{{ route('posts.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                          <label for="text">テキスト</label>
-                          <input type="text" class="form-control" id="text" name="text">
+                            <label for="text">テキスト</label>
+                            @if($errors->has('text'))
+                             <p class="text-danger font-weight-bold mb-0">{{ $errors->first('text') }}</p>
+                            @endif
+                            <input type="text" class="form-control" id="text" name="text" value="{{ old('text') }}">
                         </div>
                         <div class="form-group">
                             <label for="brand_id">ブランド</label>
@@ -25,6 +28,9 @@
                             </select>
                         </div>
                         <div class="form-group pt-3 pb-3">
+                            @if($errors->has('post_image'))
+                            <p class="text-danger font-weight-bold mb-0">{{ $errors->first('post_image') }}</p>
+                            @endif
                             <input type="file" class="form-control-file" id="post_image" name="post_image">
                         </div>
                         <input type="submit" class="btn btn-primary" value="投稿する">

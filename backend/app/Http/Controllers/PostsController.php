@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Brand;
 use App\Models\Comment;
 use App\Models\Favorite;
-use App\Models\Follower;
+use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
@@ -42,7 +42,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post)
     {
         $post->createPost($request);
         $user_id = Auth::user()->id;
@@ -84,10 +84,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $post->updatePost($request, $post);
-        return redirect('/posts');
+        return redirect(route('posts.show', ['post' => $post->id]));
     }
 
     /**
