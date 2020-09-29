@@ -79,7 +79,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $user->updateUser($request);
         return redirect(route('users.show', ['user' => $request->id]));
