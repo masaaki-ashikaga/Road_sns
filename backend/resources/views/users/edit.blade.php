@@ -18,15 +18,30 @@
                         @method('PUT')
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="form-group">
-                          <label for="account_name">アカウント名</label>
+                            <div class="d-flex">
+                                <label for="account_name">アカウント名</label>
+                                @if($errors->has('account_name'))
+                                <p class="text-danger font-weight-bold ml-4 mb-0">{{ $errors->first('account_name') }}</p>
+                                @endif
+                            </div>
                           <input type="text" class="form-control" id="account_name" name="account_name" value="{{ $user->account_name }}">
                         </div>
                         <div class="form-group">
-                          <label for="name">名前</label>
+                            <div class="d-flex">
+                                <label for="name">名前</label>
+                                @if($errors->has('name'))
+                                <p class="text-danger font-weight-bold ml-4 mb-0">{{ $errors->first('name') }}</p>
+                                @endif
+                            </div>
                           <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
                         </div>
                         <div class="form-group">
-                          <label for="text">自己紹介</label>
+                            <div class="d-flex">
+                                <label for="text">自己紹介</label>
+                                @if($errors->has('text'))
+                                <p class="text-danger font-weight-bold ml-4 mb-0">{{ $errors->first('text') }}</p>
+                                @endif
+                            </div>
                           <textarea class="form-control" id="text" name="text"></textarea>
                         </div>
                         <div class="form-group pt-3 pb-3">

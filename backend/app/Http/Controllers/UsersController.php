@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Follower;
+use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
