@@ -7,7 +7,11 @@
                 <div class="card">
                     <div>
                         <div class="p-3 d-flex">
+                            @if($user->profile_image)
                             <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
+                            @else
+                            <img src="/image/test_user.jpg" class="rounded-circle" width="100" height="100">
+                            @endif
                             <div class="ml-2">
                                 <div class="d-flex">
                                     <div class="mt-3 mr-3 ml-3 d-flex flex-column">

@@ -13,8 +13,13 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                          <label for="text">コメント</label>
-                          <input type="text" class="form-control" id="comment" name="comment" value="{{ $comment->comment }}">
+                            <div class="d-flex">
+                                <label for="comment">コメント</label>
+                                @if($errors->has('comment'))
+                                <p class="text-danger font-weight-bold ml-4 mb-0">{{ $errors->first('comment') }}</p>
+                                @endif
+                            </div>
+                            <input type="text" class="form-control" id="comment" name="comment" value="{{ $comment->comment }}">
                         </div>
                         <input type="submit" class="btn btn-primary" value="投稿する">
                     </form>

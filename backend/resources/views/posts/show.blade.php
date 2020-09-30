@@ -13,7 +13,11 @@
                         <div class="card-body">
                             <div>
                                 <div class="d-flex">
+                                    @if($post->profile_image)
                                     <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="70" height="70">
+                                    @else
+                                    <img src="/image/test_user.jpg" class="rounded-circle" width="100" height="100">
+                                    @endif
                                     <div class="mt-3 mr-3 ml-3 d-flex flex-column">
                                         <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
                                         <p class="text-secondary">{{ $user->account_name }}</p>
@@ -70,7 +74,12 @@
                     <form action="{{ route('comments.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                          <label for="comment">コメント</label>
+                            <div class="d-flex">
+                                <label for="comment">コメント</label>
+                                @if($errors->has('comment'))
+                                <p class="text-danger font-weight-bold ml-4 mb-0">{{ $errors->first('comment') }}</p>
+                                @endif
+                            </div>
                           <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                           <input type="hidden" name="post_id" value="{{ $post->id }}">
                           <input type="text" class="form-control" id="comment" name="comment">
@@ -83,7 +92,11 @@
             <div class="card">
                 <div class="card-haeder p-3 w-100">
                     <div class="d-flex">
+                        @if($comment->user->profile_image)
                         <img src="/image/{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                        @else
+                        <img src="/image/test_user.jpg" class="rounded-circle" width="50" height="50">
+                        @endif
                         <div class="mr-3 ml-3 d-flex flex-column">
                             <h5 class="mb-0 font-weight-bold">{{ $comment->user->name }}</h5>
                             <a href="{{ route('users.show', ['user' => $comment->user->id]) }}" class="text-secondary">{{ $comment->user->account_name }}</a>

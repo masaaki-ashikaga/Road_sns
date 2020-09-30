@@ -7,11 +7,14 @@
             @if($posts != null)
             @foreach($posts as $post)
             @if(auth()->user()->isFollowing($post->user->id))
-            <?php //dd(auth()->user()->isFollowing($post->user->id)) ?>
             <div class="card mb-5">
                 <div class="card-header">
                     <div class="d-flex">
+                        @if($post->user->profile_image)
                         <img src="/image/{{ $post->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                        @else
+                        <img src="/image/test_profile.jpg" class="rounded-circle" width="50" height="50">
+                        @endif
                         <div class="ml-3 d-flex flex-column">
                             <h5 class="mb-0 font-weight-bold">{{ $post->user->name }}</h5>
                             <a href="{{ route('users.show', ['user' => $post->user->id]) }}" class="text-secondary">{{ $post->user->account_name }}</a>

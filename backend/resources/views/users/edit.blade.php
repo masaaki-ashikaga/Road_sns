@@ -10,7 +10,11 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex mb-4">
+                        @if($user->profile_image)
                         <img src="/image/{{ $user->profile_image }}" class="rounded-circle mr-3" width="40" height="40">
+                        @else
+                        <img src="/image/test_user.jpg" class="rounded-circle mr-3" width="40" height="40">
+                        @endif
                         <h4>{{ $user->account_name }}</h4>
                     </div>
                     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">

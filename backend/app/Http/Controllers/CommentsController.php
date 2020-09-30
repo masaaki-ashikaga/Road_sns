@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
+
 
 class CommentsController extends Controller
 {
@@ -33,7 +35,7 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Comment $comment)
+    public function store(CommentRequest $request, Comment $comment)
     {
         $comment->createComment($request);
         return back();
@@ -69,7 +71,7 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(CommentRequest $request, Comment $comment)
     {
         $post_id = $comment->post_id;
         $comment->updateComment($request, $comment);
