@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\BrandRequest;
 
 class BrandsController extends Controller
 {
@@ -13,9 +14,19 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Brand $brand)
     {
-        $brands = Brand::paginate(5);
+        $search = $request->input('search');
+        if($search !== null){
+            $search_split = mb_convert_kana($search, 's');
+            $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
+            foreach($search_split2 as $value){
+                $query = $brand->where('name', 'like', '%' . $value . '%');
+            }
+            $brands = $query->paginate(5);
+        } else{
+            $brands = $brand->paginate(5);
+        };
         return view('brands.index', compact('brands'));
     }
 
@@ -35,7 +46,7 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Brand $brand)
+    public function store(BrandRequest $request, Brand $brand)
     {
         $brand->createBrand($request);
         return redirect(route('posts.index'));
@@ -74,7 +85,7 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(BrandRequest $request, Brand $brand)
     {
         $brand->updateBrand($request, $brand);
         return redirect(route('posts.index'));

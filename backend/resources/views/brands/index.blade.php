@@ -4,6 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="d-flex justify-content-end mb-3">
+                    <form action="{{ route('brands.index') }}" method="GET" class="form-inline">
+                        <input class="form-control mr-sm-2" name="search" type="search" placeholder="ブランド名から探す" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
                 @foreach ($brands as $brand)
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
