@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             FavoritesTableSeeder::class,
             FollowersTableSeeder::class,
             BrandsTableSeeder::class,
+            AdminsTableSeeder::class,
         ]);
     }
 }
