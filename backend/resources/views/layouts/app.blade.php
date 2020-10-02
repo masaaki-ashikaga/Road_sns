@@ -54,7 +54,7 @@
                             <li><a href="{{ route('users.index') }}" class="mr-4 text-dark nav-link"><i class="fas fa-users fa-2x"></i></a></li>
                             <li><a href="{{ route('posts.index') }}" class="mr-4 text-dark nav-link"><i class="fas fa-home fa-2x"></i></a></li>
                             <li><a href="{{ route('posts.create') }}" class="mr-4 text-dark nav-link"><i class="far fa-plus-square fa-2x"></i></a></li>
-                            <li><a href="{{ route('brands.create') }}" class="mr-4 text-dark nav-link"><i class="fas fa-bicycle fa-2x"></i></a></li>
+                            {{-- <li><a href="{{ route('brands.create') }}" class="mr-4 text-dark nav-link"><i class="fas fa-bicycle fa-2x"></i></a></li> --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{-- {{ Auth::user()->name }} --}}
@@ -74,7 +74,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('users.show', ['user' => Auth::user()->id]) }}">プロフィール</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

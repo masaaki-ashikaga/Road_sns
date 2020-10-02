@@ -23,7 +23,16 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function(){
     ]);
 
     Route::middleware('auth:user')->group(function(){
-        Route::resource('home', 'HomeController', ['only' => 'index']);
+        Route::group(['middleware' => ['auth']], function(){
+            Route::resource('home', 'HomeController', ['only' => 'index']);
+            Route::resource('posts', 'PostsController');
+            Route::get('users/{user}/followed', 'UsersController@followed')->name('followed');
+            Route::get('users/{user}/following', 'UsersController@following')->name('following');
+            Route::resource('users', 'UsersController');
+            Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
+            Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+            Route::resource('brands', 'BrandsController', ['only' => ['index', 'show']]);
+        });
     });
 });
 
@@ -45,7 +54,7 @@ Route::get('users/{user}/following', 'UsersController@following')->name('followi
 Route::resource('users', 'UsersController');
 Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
 Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
-Route::resource('brands', 'BrandsController');
+Route::resource('brands', 'BrandsController', ['only' => ['index', 'show']]);
 
 Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
 Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');

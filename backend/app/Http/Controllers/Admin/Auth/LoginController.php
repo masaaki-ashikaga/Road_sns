@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function redirectPath()
     {
-        return 'posts';
+        return 'admin/home';
     }
 
     /*
