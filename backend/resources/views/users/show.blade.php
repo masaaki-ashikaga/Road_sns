@@ -20,7 +20,14 @@
                                     </div>
                                     <div class="p-3 d-flex flex-column justify-content-between">
                                         @if(Auth::id() === $user->id)
+                                        <div class="d-flex">
                                             <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}" class="btn btn-primary">プロフィールを編集</a>
+                                            <form method="POST" action="{{ route('users.destroy', ['user' => $user->id]) }}" onSubmit="return accountDelete()">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger ml-3">アカウントを削除</button>
+                                            </form>
+                                        </div>
                                             @else
                                             @if(!$following)
                                                 <form action="{{ route('follow', ['user' => $user->id]) }}" method="POST">
@@ -66,4 +73,17 @@
             </div>
         </div>
     </div>
+
+<script>
+function accountDelete()
+{
+    'use strict';
+    if(window.confirm('削除すると元に戻りませんが、本当にアカウントを削除しますか？')){
+        return true;
+    } else{
+        return false;
+    }
+}
+</script>
+
 @endsection

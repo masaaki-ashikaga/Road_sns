@@ -15,15 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('posts', 'PostsController');
-Route::get('users/{user}/followed', 'UsersController@followed')->name('followed');
-Route::get('users/{user}/following', 'UsersController@following')->name('following');
-Route::resource('users', 'UsersController');
-Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
-Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
-Route::resource('brands', 'BrandsController', ['only' => ['index', 'show', 'create', 'update', 'destroy']]);
-Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
-Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+Route::group(['middleware' => 'auth'], function(){
+    Route::resource('posts', 'PostsController');
+    Route::get('users/{user}/followed', 'UsersController@followed')->name('followed');
+    Route::get('users/{user}/following', 'UsersController@following')->name('following');
+    Route::resource('users', 'UsersController');
+    Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
+    Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+    Route::resource('brands', 'BrandsController', ['only' => ['index', 'show', 'create', 'update', 'destroy']]);
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+});
 
 Auth::routes();
 

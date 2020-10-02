@@ -14,7 +14,7 @@
                                         <h4 class="mb-0 font-weight-bold">{{ $brand->name }}</h4>
                                         <p class="text-secondary">{{ $brand->text }}</p>
                                     </div>
-                                    {{-- <div class="mt-3 mr-3 ml-3">
+                                    <div class="mt-3 mr-3 ml-3">
                                         <form action="{{ route('brands.destroy', ['brand' => $brand->id]) }}" method="POST" onSubmit="return brandDelete()">
                                             @csrf
                                             @method('DELETE')
@@ -22,7 +22,7 @@
                                             <input type="hidden" name="id" value="{{ $brand->id }}">
                                             <input type="submit" class="btn btn-outline-dark" value="削除">
                                         </form>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="font-weight-bold ml-3">投稿 {{ $post_count }} 件</p>
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-{{-- <script>
+<script>
     function brandDelete()
     {
         'use strict';
@@ -59,7 +59,7 @@
             return false;
         }
     }
-</script> --}}
+</script>
 
 
 @endsection
