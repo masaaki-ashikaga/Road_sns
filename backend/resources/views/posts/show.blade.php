@@ -27,7 +27,7 @@
                             </div>
                             <div class="text-left pt-4">
                                 <div class="d-flex">
-                                    @if(Auth::id() === $user->id)
+                                    @if(Auth::id() === $user->id || Auth::user()->admin === 1)
                                     <div class="dropdown">
                                         <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="text-dark mr-4">
                                             <i class="fas fa-ellipsis-v fa-2x"></i>
@@ -103,7 +103,7 @@
                             <p>{{ $comment->comment }}</p>
                         </div>
                     </div>
-                    @if(Auth::id() === $comment->user_id)
+                    @if(Auth::id() === $comment->user_id || Auth::user()->admin)
                     <div class="d-flex">
                         <a href="{{ route('comments.edit', ['comment' => $comment->id]) }}" class="mr-3 btn btn-outline-secondary">編集</a>
                         <form action="{{ route('comments.destroy', ['comment' => $comment->id]) }}" method="POST" onSubmit="return commentDelete()">

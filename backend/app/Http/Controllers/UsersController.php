@@ -129,13 +129,13 @@ class UsersController extends Controller
 
     public function followed(User $user)
     {
-        $followed = $user->followers()->where('id', '<>', Auth::id())->paginate(5);
+        $followed = $user->followers()->paginate(5);
         return view('users.followed', compact('followed'));
     }
 
     public function following(User $user)
     {
-        $follows = $user->follows()->where('id', '<>', Auth::id())->paginate(5);
+        $follows = $user->follows()->paginate(5);
         return view('users.following', compact('follows'));
     }
 }

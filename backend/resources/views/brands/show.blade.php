@@ -14,6 +14,7 @@
                                         <h4 class="mb-0 font-weight-bold">{{ $brand->name }}</h4>
                                         <p class="text-secondary">{{ $brand->text }}</p>
                                     </div>
+                                    @if(Auth::user()->admin === 1)
                                     <div class="mt-3 mr-3 ml-3">
                                         <form action="{{ route('brands.destroy', ['brand' => $brand->id]) }}" method="POST" onSubmit="return brandDelete()">
                                             @csrf
@@ -23,6 +24,7 @@
                                             <input type="submit" class="btn btn-outline-dark" value="削除">
                                         </form>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="font-weight-bold ml-3">投稿 {{ $post_count }} 件</p>

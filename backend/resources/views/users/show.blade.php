@@ -28,8 +28,17 @@
                                                 <button type="submit" class="btn btn-danger ml-3">アカウントを削除</button>
                                             </form>
                                         </div>
-                                            @else
-                                            @if(!$following)
+                                        @else
+                                            <div class="d-flex">
+                                                @if(Auth::user()->admin === 1)
+                                                <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}" class="btn btn-primary">プロフィールを編集</a>
+                                                <form method="POST" action="{{ route('users.destroy', ['user' => $user->id]) }}" onSubmit="return accountDelete()">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger ml-3 mr-3">アカウントを削除</button>
+                                                </form>
+                                                @endif
+                                                @if(!$following)
                                                 <form action="{{ route('follow', ['user' => $user->id]) }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="btn btn-primary">フォローする</button>
@@ -40,11 +49,12 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-outline-dark">フォロー解除</button>
                                                 </form>
-                                            @endif
+                                                @endif
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between" style="width: 400px;">
                                     <p class="font-weight-bold mr-4">投稿 {{ $post_count }} 件</p>
                                     <p class="font-weight-bold mr-4"><a href="{{ route('followed', ['user' => $user->id]) }}" class="text-dark">フォロワー {{ $followed_count }} 人</a></p>
                                     <p class="font-weight-bold"><a href="{{ route('following', ['user' => $user->id]) }}" class="text-dark">フォロー中 {{ $following_count }} 人</a></p>
