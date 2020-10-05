@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_image')->nullable()->comment('プロフィール画像');
             $table->string('email')->unique();
             $table->string('text')->nullable()->comment('自己紹介');
+            $table->boolean('admin')->comment('管理者/一般ユーザー判別');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
