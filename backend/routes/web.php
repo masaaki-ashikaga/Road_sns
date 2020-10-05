@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('users/{user}/followed', 'UsersController@followed')->name('followed');
     Route::get('users/{user}/following', 'UsersController@following')->name('following');
     Route::resource('users', 'UsersController');
-    Route::resource('comments', 'CommentsController', ['only' => ['edit', 'store', 'update', 'destroy']]);
+    Route::resource('comments', 'CommentsController', ['except' => ['index', 'create', 'show']]);
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
     Route::resource('brands', 'BrandsController', ['only' => ['index', 'show', 'create', 'update', 'destroy']]);
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
