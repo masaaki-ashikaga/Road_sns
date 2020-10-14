@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('users', 'UsersController');
     Route::resource('comments', 'CommentsController', ['except' => ['index', 'create', 'show']]);
     Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
-    Route::resource('brands', 'BrandsController', ['only' => ['index', 'show', 'create', 'update', 'destroy']]);
+    Route::resource('brands', 'BrandsController');
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });

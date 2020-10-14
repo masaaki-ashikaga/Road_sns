@@ -22,6 +22,7 @@
                             </div>
                         @endif
                         <div class="d-flex justify-content-end flex-grow-1">
+                            @if($user->id != Auth::id())
                             @if (auth()->user()->isFollowing($user->id))
                                 <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
                                     {{ csrf_field() }}
@@ -33,6 +34,7 @@
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-primary">フォローする</button>
                                 </form>
+                            @endif
                             @endif
                         </div>
                     </div>
