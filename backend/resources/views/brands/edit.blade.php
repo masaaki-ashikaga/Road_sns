@@ -9,7 +9,7 @@
                     ブランドを追加
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('brands.update', ['brand' => $brand->id]) }}" method="POST">
+                    <form action="{{ route('brands.update', ['brand' => $brand->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

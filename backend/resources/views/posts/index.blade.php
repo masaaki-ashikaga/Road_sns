@@ -11,7 +11,8 @@
                 <div class="card-header">
                     <div class="d-flex">
                         @if($post->user->profile_image)
-                        <img src="/image/{{ $post->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                        {{-- <img src="/image/{{ $post->user->profile_image }}" class="rounded-circle" width="50" height="50"> --}}
+                        <img src="{{ asset('storage/images/' .$post->user->profile_image) }}" width="50" height="50">
                         @else
                         <img src="/image/test_profile.jpg" class="rounded-circle" width="50" height="50">
                         @endif
@@ -21,7 +22,8 @@
                         </div>
                     </div>
                 </div>
-                <img src="/image/{{ $post->post_image }}" class="card-img-top">
+                {{-- <img src="/image/{{ $post->post_image }}" class="card-img-top"> --}}
+                <img src="{{ asset('storage/images/' .$post->post_image) }}" class="card-img-top">
                 <div class="card-body">
                     <div class="text-left">
                         <div class="d-flex">

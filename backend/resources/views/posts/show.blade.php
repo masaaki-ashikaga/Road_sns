@@ -7,14 +7,16 @@
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-6">
-                        <img src="/image/{{ $post->post_image }}" height="400" class="img-fluid">
+                        <img src="{{ asset('storage/images/' .$post->post_image) }}" height="400" class="img-fluid">
+                        {{-- <img src="/image/{{ $post->post_image }}" height="400" class="img-fluid"> --}}
                     </div>
                     <div class="col-md-4">
                         <div class="card-body">
                             <div>
                                 <div class="d-flex">
                                     @if($post->profile_image)
-                                    <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="70" height="70">
+                                    <img src="{{ asset('storage/images/' .$user->profile_image) }}" class="rounded-circle" width="70" height="70">
+                                    {{-- <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="70" height="70"> --}}
                                     @else
                                     <img src="/image/test_user.jpg" class="rounded-circle" width="100" height="100">
                                     @endif
@@ -93,7 +95,8 @@
                 <div class="card-haeder p-3 w-100">
                     <div class="d-flex">
                         @if($comment->user->profile_image)
-                        <img src="/image/{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{ asset('storage/images/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                        {{-- <img src="/image/{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50"> --}}
                         @else
                         <img src="/image/test_user.jpg" class="rounded-circle" width="50" height="50">
                         @endif

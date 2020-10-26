@@ -87,11 +87,12 @@ class User extends Authenticatable
 
     public function updateUser($request)
     {
+        $file_name = $request->file('profile_image')->store('public/images');
         $new_user = User::find($request->id);
         $new_user->account_name = $request->account_name;
         $new_user->name = $request->name;
         $new_user->text = $request->text;
-        $new_user->profile_image = $request->profile_image;
+        $new_user->profile_image = basename($file_name);
         $new_user->update();
         return;
     }

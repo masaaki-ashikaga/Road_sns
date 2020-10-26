@@ -29,7 +29,7 @@ class PostRequest extends FormRequest
     {
         return [
             'text' => 'max:100',
-            'post_image' => 'required',
+            'post_image' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

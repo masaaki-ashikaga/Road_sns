@@ -62,7 +62,8 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{-- {{ Auth::user()->name }} --}}
                                     @if(Auth::user()->profile_image != null)
-                                    <img src="/image/{{ Auth::user()->profile_image }}" style="height: 22px; width: 22px; border-radius: 50%;">
+                                    {{-- <img src="/image/{{ Auth::user()->profile_image }}" style="height: 22px; width: 22px; border-radius: 50%;"> --}}
+                                    <img src="{{ asset('storage/images/' .Auth::user()->profile_image) }}" style="height: 22px; width: 22px; border-radius: 50%;">
                                     @else
                                     <img src="/image/test_user.jpg" style="height: 22px; width: 22px; border-radius: 50%;">
                                     @endif

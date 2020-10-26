@@ -17,7 +17,7 @@
                         @endif
                         <h4>{{ $user->account_name }}</h4>
                     </div>
-                    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
+                    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="id" value="{{ $user->id }}">

@@ -13,7 +13,8 @@
                 @foreach ($brands as $brand)
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{ asset('storage/images/' .$brand->brand_image) }}" class="rounded-circle" width="50" height="50">
+                            {{-- <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="50" height="50"> --}}
                             <div class="ml-3 d-flex flex-column">
                                 <h5 class="font-weight-bold mb-1">{{ $brand->name }}</h5>
                                 <p class="mb-0">{{ $brand->text }}</p>

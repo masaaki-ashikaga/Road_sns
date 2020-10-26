@@ -35,10 +35,11 @@ class Post extends Model
     public function createPost($request)
     {
         $user_id = Auth::id();
+        $file_name = $request->file('post_image')->store('public/images');
         $this->user_id = $user_id;
         $this->brand_id = $request->brand_id;
         $this->text = $request->text;
-        $this->post_image = $request->post_image;
+        $this->post_image = basename($file_name);
         $this->save();
         return;
     }
@@ -46,9 +47,10 @@ class Post extends Model
     public function updatePost($request, $post)
     {
         $new_post = $this::find($post->id);
+        $file_name = $request->file('post_image')->store('public/images');
         $new_post->brand_id = $request->brand_id;
         $new_post->text = $request->text;
-        $new_post->post_image = $request->post_image;
+        $new_post->post_image = basename($file_name);
         $new_post->update();
         return;
     }

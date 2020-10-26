@@ -14,7 +14,8 @@
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
                             @if($user->profile_image != null)
-                            <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
+                            <img src="{{ asset('storage/images/' .$user->profile_image) }}" class="rounded-circle" width="50" height="50">
+                            {{-- <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="50" height="50"> --}}
                             @else
                             <img src="/image/test_user.jpg" class="rounded-circle" width="50" height="50">
                             @endif

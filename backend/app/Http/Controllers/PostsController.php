@@ -44,6 +44,7 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request, Post $post)
     {
+        // dd($request->file('post_image'));
         $post->createPost($request);
         $user_id = Auth::user()->id;
         return redirect(route('users.show', ['user' => $user_id]));

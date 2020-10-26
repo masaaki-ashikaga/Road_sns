@@ -7,7 +7,8 @@
                 <div class="card">
                     <div>
                         <div class="p-3 d-flex">
-                            <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="100" height="100">
+                            <img src="{{ asset('storage/images/' .$brand->brand_image) }}" class="rounded-circle" width="100" height="100">
+                            {{-- <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="100" height="100"> --}}
                             <div class="ml-2">
                                 <div class="d-flex">
                                     <div class="mt-3 mr-3 ml-3 d-flex flex-column">

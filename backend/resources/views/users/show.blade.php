@@ -8,7 +8,8 @@
                     <div>
                         <div class="p-3 d-flex">
                             @if($user->profile_image)
-                            <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="100" height="100">
+                            {{-- <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="100" height="100"> --}}
+                            <img src="{{ asset('storage/images/' .$user->profile_image) }}" class="rounded-circle" width="100" height="100">
                             @else
                             <img src="/image/test_user.jpg" class="rounded-circle" width="100" height="100">
                             @endif
@@ -76,7 +77,10 @@
                 <div class="pt-3 d-flex flex-wrap text-center">
                     @foreach($posts as $post)
                     <div class="col-md-4 pt-5">
-                        <a href="{{ route('posts.show', ['post' => $post->id]) }}"><img src="/image/{{ $post->post_image }}" width="300" class="img-fluid"></a>
+                        <a href="{{ route('posts.show', ['post' => $post->id]) }}">
+                            <img src="{{ asset('storage/images/' .$post->post_image) }}" width="300" class="img-fluid">
+                            {{-- <img src="/image/{{ $post->post_image }}" width="300" class="img-fluid"> --}}
+                        </a>
                     </div>
                     @endforeach
                 </div>
