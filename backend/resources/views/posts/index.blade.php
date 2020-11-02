@@ -69,7 +69,8 @@
             <div class="card">
                 <a href="{{ route('brands.show', ['brand' => $brand->id]) }}" class="text-dark">
                     <div class="card-header p-3 d-flex">
-                        <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="50" height="50">
+                        <img src="{{ asset('storage/images/' .$brand->brand_image) }}" class="rounded-circle" width="50" height="50">
+                        {{-- <img src="/image/{{ $brand->brand_image }}" class="rounded-circle" width="50" height="50"> --}}
                         <div class="ml-3 d-flex flex-column">
                             <h5 class="mb-1 font-weight-bold">{{ $brand->name }}</h5>
                             <p class="mb-0">{{ $brand->text }}</p>

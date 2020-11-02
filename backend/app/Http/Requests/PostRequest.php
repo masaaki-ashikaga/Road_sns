@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'max:100',
+            'text' => 'required|max:100',
             'post_image' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -36,6 +36,7 @@ class PostRequest extends FormRequest
     public function messages()
     {
         return [
+            'text.required' => 'テキストは必須です。',
             'text.max' => 'テキストは100文字以内で入力してください。',
             'post_image.required' => '画像を選択してください。',
         ];

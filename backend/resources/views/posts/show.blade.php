@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div>
                                 <div class="d-flex">
-                                    @if($post->profile_image)
+                                    @if($user->profile_image)
                                     <img src="{{ asset('storage/images/' .$user->profile_image) }}" class="rounded-circle" width="70" height="70">
                                     {{-- <img src="/image/{{ $user->profile_image }}" class="rounded-circle" width="70" height="70"> --}}
                                     @else
