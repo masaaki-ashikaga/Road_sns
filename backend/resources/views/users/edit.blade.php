@@ -11,7 +11,8 @@
                 <div class="card-body">
                     <div class="d-flex mb-4">
                         @if($user->profile_image)
-                        <img src="/image/{{ $user->profile_image }}" class="rounded-circle mr-3" width="40" height="40">
+                        {{-- <img src="/image/{{ $user->profile_image }}" class="rounded-circle mr-3" width="40" height="40"> --}}
+                        <img src="{{ asset('storage/images/' .$user->profile_image) }}" class="rounded-circle mr-3" width="40" height="40">
                         @else
                         <img src="/image/test_user.jpg" class="rounded-circle mr-3" width="40" height="40">
                         @endif
