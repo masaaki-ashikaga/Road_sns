@@ -32,7 +32,7 @@
                                         @else
                                             <div class="d-flex">
                                                 @if(Auth::user()->admin === 1)
-                                                <a href="{{ route('users.edit', ['user' => Auth::user()->id]) }}" class="btn btn-primary">プロフィールを編集</a>
+                                                <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="btn btn-primary">プロフィールを編集</a>
                                                 <form method="POST" action="{{ route('users.destroy', ['user' => $user->id]) }}" onSubmit="return accountDelete()">
                                                     @csrf
                                                     @method('DELETE')
